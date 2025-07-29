@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -61,7 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				anime: {
+					gold: 'hsl(var(--anime-gold))',
+					blue: 'hsl(var(--anime-blue))',
+					green: 'hsl(var(--anime-green))',
+					red: 'hsl(var(--anime-red))'
 				}
+			},
+			backdropBlur: {
+				xs: '2px',
+			},
+			aspectRatio: {
+				'4/3': '4 / 3',
+				'3/4': '3 / 4',
+				'9/16': '9 / 16',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
