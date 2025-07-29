@@ -58,7 +58,7 @@ export const HeroSection = () => {
                 {currentAnime.title.english}
               </h1>
               {currentAnime.title.japanese && (
-                <p className="text-lg md:text-xl text-muted-foreground">
+                <p className="text-lg md:text-xl text-muted-foreground jp-text">
                   {currentAnime.title.japanese}
                 </p>
               )}

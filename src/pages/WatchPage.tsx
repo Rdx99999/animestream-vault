@@ -9,24 +9,18 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Eye, Calendar } from 'luci
 import { Loader2 } from 'lucide-react';
 
 export const WatchPage = () => {
-  const { slug, seasonEpisode } = useParams<{ slug: string; seasonEpisode: string }>();
+  const { slug, seasonNumber, episodeNumber } = useParams<{ 
+    slug: string; 
+    seasonNumber: string; 
+    episodeNumber: string; 
+  }>();
   const navigate = useNavigate();
 
-  // Parse season and episode from URL
-  const parseSeasonEpisode = (seasonEpisode: string) => {
-    const match = seasonEpisode?.match(/season-(\d+)\/episode-(\d+)/);
-    if (match) {
-      return {
-        seasonNumber: parseInt(match[1]),
-        episodeNumber: parseInt(match[2]),
-      };
-    }
-    return null;
-  };
+  // Convert params to numbers
+  const seasonNum = seasonNumber ? parseInt(seasonNumber) : 1;
+  const episodeNum = episodeNumber ? parseInt(episodeNumber) : 1;
 
-  const params = parseSeasonEpisode(seasonEpisode || '');
-  
-  if (!params) {
+  if (!slug || !seasonNumber || !episodeNumber) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -36,8 +30,6 @@ export const WatchPage = () => {
       </div>
     );
   }
-
-  const { seasonNumber, episodeNumber } = params;
 
   // Get anime details
   const { data: animeData, isLoading: animeLoading } = useQuery({
@@ -50,21 +42,21 @@ export const WatchPage = () => {
 
   // Get all episodes for the season
   const { data: episodesData, isLoading: episodesLoading } = useQuery({
-    queryKey: ['episodes', anime?.id, seasonNumber],
-    queryFn: () => episodeAPI.getBySeason(anime!.id, seasonNumber),
+    queryKey: ['episodes', anime?.id, seasonNum],
+    queryFn: () => episodeAPI.getBySeason(anime!.id, seasonNum),
     enabled: !!anime?.id,
   });
 
   const episodes = episodesData?.data || [];
-  const currentEpisode = episodes.find(ep => ep.episodeNumber === episodeNumber);
-  const currentIndex = episodes.findIndex(ep => ep.episodeNumber === episodeNumber);
+  const currentEpisode = episodes.find(ep => ep.episodeNumber === episodeNum);
+  const currentIndex = episodes.findIndex(ep => ep.episodeNumber === episodeNum);
 
   // Navigation helpers
   const hasNext = currentIndex < episodes.length - 1;
   const hasPrevious = currentIndex > 0;
 
   const goToEpisode = (episodeNum: number) => {
-    navigate(`/watch/${slug}/season-${seasonNumber}/episode-${episodeNum}`);
+    navigate(`/watch/${slug}/season-${seasonNum}/episode-${episodeNum}`);
   };
 
   const handleNext = () => {
@@ -119,7 +111,7 @@ export const WatchPage = () => {
             <div>
               <h1 className="font-semibold">{anime.title.english}</h1>
               <p className="text-sm text-muted-foreground">
-                Season {seasonNumber}, Episode {episodeNumber}
+                Season {seasonNum}, Episode {episodeNum}
               </p>
             </div>
           </div>
@@ -217,7 +209,7 @@ export const WatchPage = () => {
             <Card className="glass-card">
               <CardHeader>
                 <CardTitle className="text-lg">
-                  Season {seasonNumber} Episodes
+                  Season {seasonNum} Episodes
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">

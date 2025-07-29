@@ -32,7 +32,7 @@ const App = () => (
             <Route path="/browse" element={<BrowsePage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/anime/:slug" element={<AnimeDetailPage />} />
-            <Route path="/watch/:slug/:seasonEpisode" element={<WatchPage />} />
+            <Route path="/watch/:slug/season-:seasonNumber/episode-:episodeNumber" element={<WatchPage />} />
             <Route path="/trending" element={<BrowsePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

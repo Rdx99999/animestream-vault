@@ -57,7 +57,7 @@ export const AnimeDetailPage = () => {
 
   const handleWatchNow = () => {
     if (episodes.length > 0) {
-      navigate(`/watch/${anime.slug}/season-1/episode-1`);
+      navigate(`/watch/${anime.slug}/season-${episodes[0].seasonNumber}/episode-${episodes[0].episodeNumber}`);
     }
   };
 
@@ -95,7 +95,7 @@ export const AnimeDetailPage = () => {
                       {anime.title.english}
                     </h1>
                     {anime.title.japanese && (
-                      <p className="text-lg text-muted-foreground">
+                      <p className="text-lg text-muted-foreground jp-text">
                         {anime.title.japanese}
                       </p>
                     )}
