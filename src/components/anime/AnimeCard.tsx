@@ -26,7 +26,7 @@ export const AnimeCard = ({ anime, size = 'md' }: AnimeCardProps) => {
       className={`anime-card cursor-pointer group ${sizeClasses[size]} flex-shrink-0`}
     >
       {/* Image Container */}
-      <div className="relative w-full h-3/4 overflow-hidden rounded-t-2xl">
+      <div className="relative w-full h-2/3 overflow-hidden rounded-t-2xl">
         <img
           src={anime.thumbnail}
           alt={anime.title.english}
@@ -56,7 +56,7 @@ export const AnimeCard = ({ anime, size = 'md' }: AnimeCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-3 h-1/4 flex flex-col min-h-0">
+      <div className="p-3 h-1/3 flex flex-col min-h-0">
         <div className="flex-1 overflow-hidden min-h-0">
           <h3 className="font-semibold text-sm leading-tight group-hover:text-primary transition-smooth line-clamp-2 max-h-[2.1rem] overflow-hidden">
             {anime.title.english}
