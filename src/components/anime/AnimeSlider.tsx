@@ -39,7 +39,7 @@ export const AnimeSlider = ({ title, anime, size = 'md' }: AnimeSliderProps) => 
       {/* Header */}
       <div className="flex items-center justify-between px-4 md:px-6">
         <h2 className="text-xl md:text-2xl font-bold">{title}</h2>
-        <div className="flex space-x-2">
+        <div className="flex items-center space-x-2">
           <Button
             variant="ghost"
             size="icon"

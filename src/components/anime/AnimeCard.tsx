@@ -37,15 +37,15 @@ export const AnimeCard = ({ anime, size = 'md' }: AnimeCardProps) => {
         {/* Overlay with rating */}
         <div className="absolute top-2 right-2 glass px-2 py-1 rounded-lg flex items-center space-x-1">
           <Star className="w-3 h-3 text-anime-gold" fill="currentColor" />
-          <span className="text-xs font-medium">{anime.rating}</span>
+          <span className="text-xs font-medium">{anime.rating.toFixed(1)}</span>
         </div>
 
         {/* Status badge */}
         <div className="absolute top-2 left-2">
           <span className={`px-2 py-1 rounded-full text-xs font-medium glass ${
-            anime.status === 'Ongoing' ? 'text-anime-green' :
-            anime.status === 'Completed' ? 'text-anime-blue' :
-            'text-muted-foreground'
+            anime.status === 'Ongoing' ? 'text-anime-green bg-anime-green/10' :
+            anime.status === 'Completed' ? 'text-anime-blue bg-anime-blue/10' :
+            'text-muted-foreground bg-muted/10'
           }`}>
             {anime.status}
           </span>
@@ -57,20 +57,22 @@ export const AnimeCard = ({ anime, size = 'md' }: AnimeCardProps) => {
 
       {/* Content */}
       <div className="p-3 h-1/4 flex flex-col justify-between">
-        <div>
-          <h3 className="font-semibold text-sm line-clamp-2 group-hover:text-primary transition-smooth">
+        <div className="flex-1 min-h-0">
+          <h3 className="font-semibold text-sm leading-tight group-hover:text-primary transition-smooth line-clamp-2">
             {anime.title.english}
           </h3>
         </div>
         
-        <div className="flex items-center justify-between text-xs text-muted-foreground mt-1">
+        <div className="flex items-center justify-between text-xs text-muted-foreground mt-1 flex-shrink-0">
           <div className="flex items-center space-x-1">
-            <Calendar className="w-3 h-3" />
-            <span>{new Date(anime.releaseDate).getFullYear()}</span>
+            <Calendar className="w-3 h-3 flex-shrink-0" />
+            <span className="font-medium">
+              {anime.releaseDate ? new Date(anime.releaseDate).getFullYear() : 'N/A'}
+            </span>
           </div>
           <div className="flex items-center space-x-1">
-            <Clock className="w-3 h-3" />
-            <span>{anime.type}</span>
+            <Clock className="w-3 h-3 flex-shrink-0" />
+            <span className="font-medium">{anime.type || 'TV'}</span>
           </div>
         </div>
       </div>
