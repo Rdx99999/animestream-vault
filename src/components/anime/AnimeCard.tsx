@@ -56,14 +56,14 @@ export const AnimeCard = ({ anime, size = 'md' }: AnimeCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-3 h-1/4 flex flex-col justify-between">
-        <div className="flex-1 min-h-0">
-          <h3 className="font-semibold text-sm leading-tight group-hover:text-primary transition-smooth line-clamp-2">
+      <div className="p-3 h-1/4 flex flex-col">
+        <div className="flex-1 overflow-hidden mb-2">
+          <h3 className="font-semibold text-sm leading-tight group-hover:text-primary transition-smooth line-clamp-2 max-h-[2.5rem]">
             {anime.title.english}
           </h3>
         </div>
         
-        <div className="flex items-center justify-between text-xs text-muted-foreground mt-1 flex-shrink-0">
+        <div className="flex items-center justify-between text-xs text-muted-foreground flex-shrink-0 h-4">
           <div className="flex items-center space-x-1">
             <Calendar className="w-3 h-3 flex-shrink-0" />
             <span className="font-medium">
